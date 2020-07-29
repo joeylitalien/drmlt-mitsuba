@@ -177,7 +177,7 @@ Change logs
   2020/07/29: Initial code release
 
 
-TODO License
+License
 ------------
 
 This code is released under the GNU General Public License (version 3).
