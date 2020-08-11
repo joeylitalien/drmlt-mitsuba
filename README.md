@@ -1,4 +1,4 @@
-Light Transport Simulation in the Gradient Domain
+# Delayed Rejection Metropolis Light Transport
 -------------------------------------------------------------------------
 
 ![](./static/teaser.png)
