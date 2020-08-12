@@ -1,19 +1,17 @@
 # Delayed Rejection Metropolis Light Transport
 -------------------------------------------------------------------------
 
-![](./static/teaser.png)
-
-  This repository contains the *bold-then-timid* implementation of [Delayed Rejection Metropolis Light Transport](https://joeylitalien.github.io/publications/drmlt) based on the [Mitsuba v0.6](https://www.mitsuba-renderer.org/download.html) render. Note that this work is a fork of the SIGGRAPH 2018 course [Light Transport Simulation in the Gradient Domain](https://github.com/beltegeuse/gradient-mts) repository.
+This repository contains the *bold-then-timid* implementation of [Delayed Rejection Metropolis Light Transport](https://joeylitalien.github.io/publications/drmlt) based on the [Mitsuba v0.6](https://www.mitsuba-renderer.org/download.html) render. Note that this work is a fork of the SIGGRAPH 2018 course [Light Transport Simulation in the Gradient Domain](https://github.com/beltegeuse/gradient-mts) repository.
 
 If you want to understand the algorithm by looking at the code, you should start with:
 
-  - Multiplexed MLT
+  - Multiplexed MLT__
     - `./include/mitsuba/bidir/path_sampler.h`
     - `./src/libbidir/path_sampler.cpp`
-  - Delayed Rejection MLT
+  - __Delayed Rejection MLT__
     -  `./src/integrator/drmlt/*`
 
-In case of problems/questions/comments don't hesitate to contact us directly.
+In case of problems/questions/comments don't hesitate to contact the authors directly.
  
 Dependencies
 ------------
@@ -36,12 +34,12 @@ Dependencies
 Compiling
 ---------
 
-We provided installation instructions for ArchLinux only, but the installation procedure is similar on Ubuntu using `apt install`. You can install Mitsuba's dependencies using the command:
+We provided installation instructions for ArchLinux only, but the installation procedure is similar on Ubuntu using `apt install`. To install Mitsuba's dependencies, run:
 ```bash
 pacman -Sy make boost eigen gcc openexr python3 fftw libpng jasper zlib cmake git awk xerces-c xorg glew openimageio python-pip
 ```
 
-You can use configure and build the project using [cmake](https://cmake.org/): 
+Configure and build the project using [Cmake](https://cmake.org/): 
 ```bash
 mkdir build && cd "$_"
 cmake ../
@@ -66,7 +64,7 @@ Our implementation of delayed rejection support three types of frameworks:
 Path Sampling Technique
 -----------------------
 
-A big change from the previoux Mitsuba implementation is that now integrator can be run over three different path sampling techniques:
+An important change from the previoux Mitsuba implementation is that now integrator can be run over three different path sampling techniques:
 - __Unidirectional Path Tracing (PT):__ Unidirectional volumetric path tracer.
 - __Bidirectional Path Tracing (BDPT):__ Bidirectional path tracer with Multiple Importance Sampling (MIS).
 - __Multiplexed MLT (MMLT):__ [Multiplexed MLT](https://www.ci.i.u-tokyo.ac.jp/~hachisuka/mmlt.pdf) Bidirectional path tracer.
@@ -77,10 +75,10 @@ Integrators
 -----------
 
 We modified and added the following integrators:
- - `src/integrator/pssmlt`: This is a modified version of the original Primary Sample Space Metropolis Light Transport (PSSMLT) algorithm.
- - `src/integrator/drmlt`: This is the core of our Delayed Rejection Metropolis Light Transport (DRMLT) algorithm.
+ - `src/integrator/pssmlt`: This is a modified version of the original PSSMLT algorithm.
+ - `src/integrator/drmlt`: This is the core of our DRMLT algorithm.
 
-You can select between them by using the `-D integrator=[pssmlt,drmlt]` CLI parameter.
+You can select between them by using the `-D integrator=[pssmlt,drmlt]` command-line parameter.
 
 ### `pssmlt`
 | Parameter | Description | Requirement |
@@ -111,33 +109,33 @@ For example:
 
 For example:
 ```bash
-<PATH_TO_MITSUBA_BIN>/mitsuba <PATH_TO_SCENE>/scene.xml /
-                              -D integrator=drmlt       /
-                              -D technique=mmlt         /
-                              -D type=orbital           /
-                              -D fixEmitterPath=true    /
-                              -D acceptanceMap=false    /
+<PATH_TO_MITSUBA_BIN>/mitsuba <PATH_TO_SCENE>/scene.xml \
+                              -D integrator=drmlt       \
+                              -D technique=mmlt         \
+                              -D type=orbital           \
+                              -D fixEmitterPath=true    \
+                              -D acceptanceMap=false
 ```
 
 
 Acceptance Map
 --------------
 
-When using the `drmlt` integrator, you can generate an acceptance map using the `-D acceptanceMap=true` option. Doing so will generate an RGB image such that the _R_-channel corresponds to the number of accepted samples at the first stage and the _G_-channel corresponds to the second stage. You can convert this image to a heatmap using the standalone script `./tools/stages_heatmap.py`. For example, you can use this command to save the acceptance map during rendering:
+When using the `drmlt` integrator, you can generate an acceptance map using the `-D acceptanceMap=true` option. Doing so will generate an RGB image such that the _R_-channel corresponds to the number of accepted samples at the first stage and the _G_-channel is the same for the second stage. To convert this image to a heatmap, use the standalone script `./tools/stages_heatmap.py`. For example, the following command saves the acceptance map during rendering:
 
 ```bash
-<PATH_TO_MITSUBA_BIN>/mitsuba <PATH_TO_SCENE>/scene.xml /
-                              -D integrator=drmlt       /
-                              -D technique=bdpt         /
-                              -D type=orbital           /
-                              -D acceptanceMap=true     /
+<PATH_TO_MITSUBA_BIN>/mitsuba <PATH_TO_SCENE>/scene.xml \
+                              -D integrator=drmlt       \
+                              -D technique=bdpt         \
+                              -D type=orbital           \
+                              -D acceptanceMap=true
 ```
 
 To generate the actual heatmap, run:
 
 ```bash
 python <PATH_TO_MITSUBA_ROOT>/tools/stages_heatmap.py    \
-          -t <PATH_TO_ACCEPTANCE_MAP>/acceptance_map.exr  \ 
+          -t <PATH_TO_ACCEPTANCE_MAP>/acceptance_map.exr \ 
           -c [0.2,0.8]
 ```
 
@@ -150,13 +148,13 @@ python <PATH_TO_MITSUBA_ROOT>/tools/stages_heatmap.py    \
 Mixture
 -------
 
-To generate comparison of our method against a naïve mixture of both stage, you can use the `-D useMixture=true` option under the `drmlt` integrator.
+To generate a comparison of our method against a naïve mixture of both stage, use the `-D useMixture=true` option under the `drmlt` integrator.
 
 
 Scenes
 ------
 
-- [Swimming-Pool](http://beltegeuse.s3-website-ap-northeast-1.amazonaws.com/research/2020_DRMLT/scenes/swimming-pool_pssmlt.zip)
+- [Swimming Pool](http://beltegeuse.s3-website-ap-northeast-1.amazonaws.com/research/2020_DRMLT/scenes/swimming-pool_pssmlt.zip)
 - [Aquarium](http://beltegeuse.s3-website-ap-northeast-1.amazonaws.com/research/2020_DRMLT/scenes/aquarium_mmlt.zip)
 - [Veach Door](http://beltegeuse.s3-website-ap-northeast-1.amazonaws.com/research/2020_DRMLT/scenes/veach-door_mmlt.zip)
 - [Glass of Water](http://beltegeuse.s3-website-ap-northeast-1.amazonaws.com/research/2020_DRMLT/scenes/glass-of-water_pssmlt.zip)
