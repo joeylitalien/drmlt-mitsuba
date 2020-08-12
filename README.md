@@ -1,7 +1,6 @@
 # Delayed Rejection Metropolis Light Transport
--------------------------------------------------------------------------
 
-This repository contains the *bold-then-timid* implementation of [Delayed Rejection Metropolis Light Transport](https://joeylitalien.github.io/publications/drmlt) based on the [Mitsuba v0.6](https://www.mitsuba-renderer.org/download.html) render. Note that this work is a fork of the SIGGRAPH 2018 course [Light Transport Simulation in the Gradient Domain](https://github.com/beltegeuse/gradient-mts) repository.
+This repository contains the *bold-then-timid* implementation of [Delayed Rejection Metropolis Light Transport](https://joeylitalien.github.io/publications/drmlt) based on the [Mitsuba v0.6](https://www.mitsuba-renderer.org/download.html) renderer. Note that this work is a fork of the SIGGRAPH 2018 course [Light Transport Simulation in the Gradient Domain](https://github.com/beltegeuse/gradient-mts) repository.
 
 If you want to understand the algorithm by looking at the code, you should start with:
 
@@ -46,7 +45,7 @@ cmake ../
 make -j
 ```
 
-To install the tool dependencies, run
+To install the tooling dependencies, run:
 ```bash
 pacman -Sy python3 python-pip \
 pip install numpy matplotlib pyexr
