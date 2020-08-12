@@ -4,13 +4,13 @@ This repository contains the *bold-then-timid* implementation of [Delayed Reject
 
 If you want to understand the algorithm by looking at the code, you should start with:
 
-  - Multiplexed MLT__
+  - __Multiplexed MLT__
     - `./include/mitsuba/bidir/path_sampler.h`
     - `./src/libbidir/path_sampler.cpp`
   - __Delayed Rejection MLT__
     -  `./src/integrator/drmlt/*`
 
-In case of problems/questions/comments don't hesitate to contact the authors directly.
+In case of problems/questions/comments, do not hesitate to contact the authors directly.
  
 Dependencies
 ------------
@@ -66,7 +66,7 @@ Path Sampling Technique
 An important change from the previoux Mitsuba implementation is that now integrator can be run over three different path sampling techniques:
 - __Unidirectional Path Tracing (PT):__ Unidirectional volumetric path tracer.
 - __Bidirectional Path Tracing (BDPT):__ Bidirectional path tracer with Multiple Importance Sampling (MIS).
-- __Multiplexed MLT (MMLT):__ [Multiplexed MLT](https://www.ci.i.u-tokyo.ac.jp/~hachisuka/mmlt.pdf) Bidirectional path tracer.
+- __[Multiplexed MLT](https://www.ci.i.u-tokyo.ac.jp/~hachisuka/mmlt.pdf) (MMLT):__ Bidirectional path tracer.
 
 You can find these in `src/libbidir/path_sampler.cpp` and `include/bidir/path_sampler.h`.
 
@@ -88,7 +88,7 @@ You can select between them by using the `-D integrator=[pssmlt,drmlt]` command-
 | `mutationSizeHigh` | Kelemen higher bound | Optional (Default: `1/64`) |
 | `sigma` | Standard deviation of Gaussian mutation | Optional (Default: `1/64`) |
 
-For example:
+#### Example
 ```bash
 <PATH_TO_MITSUBA_BIN>/mitsuba <PATH_TO_SCENE>/scene.xml -D integrator=pssmlt -D technique=path                      
 ```
@@ -106,7 +106,7 @@ For example:
 | `sigma` | Standard deviation of Gaussian mutation | Optional (Default: `1/64`) |
 | `scaleSecond` | Scaling ratio of the second stage mutation | Optional (Default: `1/10`) |
 
-For example:
+#### Example
 ```bash
 <PATH_TO_MITSUBA_BIN>/mitsuba <PATH_TO_SCENE>/scene.xml \
                               -D integrator=drmlt       \
