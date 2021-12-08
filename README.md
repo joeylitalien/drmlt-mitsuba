@@ -153,10 +153,10 @@ To generate a comparison of our method against a naïve mixture of both stage, u
 Scenes
 ------
 
-- [Swimming Pool](http://beltegeuse.s3-website-ap-northeast-1.amazonaws.com/research/2020_DRMLT/scenes/swimming-pool_pssmlt.zip)
-- [Aquarium](http://beltegeuse.s3-website-ap-northeast-1.amazonaws.com/research/2020_DRMLT/scenes/aquarium_mmlt.zip)
-- [Veach Door](http://beltegeuse.s3-website-ap-northeast-1.amazonaws.com/research/2020_DRMLT/scenes/veach-door_mmlt.zip)
-- [Glass of Water](http://beltegeuse.s3-website-ap-northeast-1.amazonaws.com/research/2020_DRMLT/scenes/glass-of-water_pssmlt.zip)
+- [Swimming Pool](http://adrien-gruson.com/research/2020_DRMLT/scenes/swimming-pool_pssmlt.zip)
+- [Aquarium](http://adrien-gruson.com/research/2020_DRMLT/scenes/aquarium_mmlt.zip)
+- [Veach Door](http://adrien-gruson.com/research/2020_DRMLT/scenes/veach-door_mmlt.zip)
+- [Glass of Water](http://adrien-gruson.com/research/2020_DRMLT/scenes/glass-of-water_pssmlt.zip)
 
 
 Change Logs
